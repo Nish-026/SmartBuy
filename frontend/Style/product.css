@@ -18,3 +18,8 @@
     width:20%;
     margin-left: 80%;
 }
+
+#main{
+    border:1px solid red;
+    height: 200px;
+}

@@ -38,6 +38,7 @@
 			top:0px;
 			z-index:999;
 			background-color: white;
+			
 		}
 
 		nav>div {
@@ -82,8 +83,8 @@
 		  }
 		  
 		  .dropbtn {
-			background-color: #4d4d4d;
-			color: white;
+			background-color: #ffffff;
+			color: rgb(12, 12, 12);
 			border: 1.5px solid rgb(200, 152, 7);
 			padding: 5px;
 			width:100%;
@@ -97,8 +98,8 @@
 			display: none;
 			position: absolute;
 			z-index: 999;
-			width:80%;
-			background-color: white;
+			width:100%;
+			background-color: rgb(223, 178, 73);
 			border:1px solid grey;
 		  }
 		  
