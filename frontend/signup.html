@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Signup 2</title>
+    <link rel="stylesheet" href="./Style/signup.css" />
+  </head>
+  <body>
+    <div class="login-card">
+      <h2>Sign Up</h2>
+      <h3>Enter your credentials</h3>
+      <form class="login-form">
+        <div class="username">
+            <input
+            spellcheck="false"
+            class="control"
+            id="name"
+            type="text"
+            placeholder="Name"
+          />
+          <input
+          autocomplete="off"
+          spellcheck="false"
+          id="mobile"
+          class="control"
+          type="text"
+          placeholder="Mobile Number"
+        />
+          <input
+            autocomplete="off"
+            spellcheck="false"
+            id="email"
+            class="control"
+            type="email"
+            placeholder="Email"
+          />
+          <div id="spinner" class="spinner"></div>
+        </div>
+        <input
+        spellcheck="false"
+        class="control"
+        id="password"
+        type="password"
+        placeholder="Password"
+        onkeyup="handleChange()"
+      />
+        <div id="bars">
+          <div></div>
+        </div>
+        <div class="strength" id="strength"></div>
+        <button class="control" type="button" id="signup_btn" onclick="signup()">SIGN UP</button>
+      </form>
+    </div>
+    <script type="text/javascript" src="./scripts/signup.js"></script>
+  </body>
+</html>
