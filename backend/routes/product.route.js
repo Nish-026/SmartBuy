@@ -4,7 +4,8 @@ const productRouter=express.Router()
 const {productModel} = require("../model/products.model")
 
 productRouter.get("/",async(req,res)=>{
-    const products= await productModel.find()
+    console.log(req.query)
+    const products= await productModel.find(req.query)
     res.send(products)
 
 })
