@@ -5,7 +5,32 @@ const {productModel} = require("../model/products.model")
 
 productRouter.get("/",async(req,res)=>{
     console.log(req.query)
-    const products= await productModel.find(req.query)
+    let query={}
+    if(req.query.product_category){
+        query["product_category"]=req.query.product_category;
+    }
+    if(req.query.category){
+        query["category"]=req.query.category
+    }
+    let sortby={}
+    let min,max;
+    if(req.query.min||req.query.max){
+        min=req.query.min
+        max=req.query.max
+        if(min&&max){
+            query["price"]={$gt:min,$lt:max}
+        }else{
+            query["price"]={$gt:min}
+        }
+    }
+    console.log(query);
+    if(req.query.asc){
+        sortby[req.query.asc]=1;
+    }else if(req.query.desc){
+        sortby[req.query.desc]=-1;
+    }
+    console.log(req.query)
+    const products= await productModel.find(query).sort(sortby)
     res.send(products)
 
 })
@@ -18,50 +43,35 @@ productRouter.post("/create",async(req,res)=>{
     res.send({"msg":"product created"})
 })
 
-// productRouter.patch("/update/:id",async(req,res)=>{
-//     const noteID=req.params.id
-//     const payload=req.body
-//     try{
-//         if(userId_making_req!==userId_in_doc){
-//             res.send({"msg":"You're not authorized"})
-//         }else{
-//             await notesModel.findByIdAndUpdate({"_id":noteID},payload)
-//             res.send({"msg":`Note with id: ${noteID} has been updated`})
-//         }
+productRouter.patch("/update/:id",async(req,res)=>{
+    const noteID=req.params.id
+    const payload=req.body
+    try{
+
+            await productModel.findByIdAndUpdate({"_id":noteID},payload)
+            res.send({"msg":`Note with id: ${noteID} has been updated`})
         
-//     }catch(err){
-//         console.log(err);
-//         res.send({"msg":"something went wrong"})
-//     }
+    }catch(err){
+        console.log(err);
+        res.send({"msg":"something went wrong"})
+    }
     
-// })
+})
 
 
-// noteRouter.delete("/delete/:id",async(req,res)=>{
-//     const noteID=req.params.id
-//     console.log(noteID)
-//     const note=await notesModel.findOne({"_id":noteID})
-//     console.log(note)
-//     console.log(note.user)
-//     const userId_in_doc=note.user
-//     console.log(req.body);
-//     const userId_making_req=req.body.user
-//     console.log(userId_making_req);
-//     try{
-//         console.log(userId_making_req==userId_in_doc);
-//         if(userId_making_req!==userId_in_doc){
-//             res.send({"msg":"You're not authorized"})
-//         }else{
-//             await notesModel.findByIdAndDelete({"_id":noteID})
-//             res.send({"msg":"note deleted"})
-//         }
+
+productRouter.delete("/delete/:id",async(req,res)=>{
+    const noteID=req.params.id
+    try{
+            await productModel.findByIdAndDelete({"_id":noteID})
+            res.send({"msg":"note deleted"})
         
-//     }catch(err){
-//         console.log(err);
-//         res.send({"msg":"something went wrong"})
-//     }
+    }catch(err){
+        console.log(err);
+        res.send({"msg":"something went wrong"})
+    }
     
-// })
+})
 
 module.exports={
     productRouter

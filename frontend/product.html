@@ -22,25 +22,25 @@
             <h5>FILTERS</h5>
             <hr>
             <h6>Price</h6>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <div class="form-check" data_id="min=0&max=100">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="1">
                 <label class="form-check-label" for="flexRadioDefault1">
                     Below Rs.100
                 </label>
             </div>
-            <div class="form-check">
+            <div class="form-check" data_id="min=100&max=400">
                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
                 <label class="form-check-label" for="flexRadioDefault2">
                     Rs.100 to Rs.400
                 </label>
             </div>
-            <div class="form-check">
+            <div class="form-check"data_id="min=400&max=900">
                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
                 <label class="form-check-label" for="flexRadioDefault2">
                     Rs.400 to Rs.900
                 </label>
             </div>
-            <div class="form-check">
+            <div class="form-check" data_id="min=900">
                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
                 <label class="form-check-label" for="flexRadioDefault2">
                     Above 900
@@ -49,15 +49,15 @@
             <hr>
         </div>
         <div id="mainsection">
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Sort by:</option>
-                <option value="1">High-to-low</option>
-                <option value="2">Low-to-high</option>
+            <select id="form-select" aria-label="Default select example">
+                <option selected value="">Sort by:</option>
+                <option value="desc=price">High-to-low</option>
+                <option value="asc=price">Low-to-high</option>
                 <option value="3">Recommended</option>
-              </select>
-              <div id="main">
+            </select>
+            <div id="main">
 
-              </div>
+            </div>
         </div>
 
     </div>
@@ -67,3 +67,4 @@
 </body>
 
 </html>
+<script src="./scripts/product.js"></script>

@@ -1,6 +1,8 @@
 const mongoose=require("mongoose")
 
 const productSchema=mongoose.Schema({
+    color:String,
+    material:String,
     name:String,
     price:Number,
     category:String,
