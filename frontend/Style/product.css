@@ -34,3 +34,6 @@
     object-fit:cover;
     object-position: 0% 0%;
 }
+#brand_filter{
+    border:1px solid black;
+}
