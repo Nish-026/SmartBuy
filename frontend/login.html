@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Signup 2</title>
+    <link rel="stylesheet" href="./Style/login.css" />
+  </head>
+  <body>
+    <div class="login-card">
+ 
+      <h3>Login To Smartbuy</h3>
+      <form class="login-form">
+        <div class="username">
+          <input
+            autocomplete="off"
+            spellcheck="false"
+            id="email"
+            class="control"
+            type="email"
+            placeholder="Email"
+          />
+          <div id="spinner" class="spinner"></div>
+        </div>
+        <input
+        spellcheck="false"
+        class="control"
+        id="password"
+        type="password"
+        placeholder="Password"
+        onkeyup="handleChange()"
+      />
+        <button class="control" type="button">LOG IN</button>
+        <h4>New to SmartBUY?</h4>
+        <a href="signup.html" id="create">Create Account</a>
+      </form>
+    </div>
+    <script type="text/javascript" src="./scripts/login.js"></script>
+  </body>
+</html>
