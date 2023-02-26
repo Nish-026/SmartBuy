@@ -32,9 +32,11 @@ function display(data) {
         addtoCart.innerHTML = "Add to Cart";
         addtoCart.addEventListener("click",()=>{
             console.log(ele["_id"])
+            console.log(ele["price"])
             const data = {
-                brand: ele.brand,
-                quantity: 1
+                quantity: 1,
+                product_Id:ele["_id"],
+                price:ele["price"]
               };
               fetch('http://localhost:4500/cart/add', {
                 method: 'POST',
