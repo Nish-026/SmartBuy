@@ -54,7 +54,7 @@ function display(data) {
               .catch(error => {
                 console.error(error);
               });
-              
+              alert("Product added in cart")
         })
         card.append(image, title, price, addtoCart)
         mainSection.append(card);

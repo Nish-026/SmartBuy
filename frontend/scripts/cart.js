@@ -61,6 +61,7 @@ function display(data) {
               .then(res => {
                 console.log(res);
                 getData();
+                getData2();
               })
               .catch(error => {
                 console.error(error);
@@ -84,8 +85,50 @@ function display(data) {
                 },
                 body: JSON.stringify(payload)
             }).then(res=>res.json())
-            .then(res=>console.log(res))
+            .then(res=>{
+                console.log(res)
+                getData2();
+            })
             .catch(err=>console.log(err))
         })
     })
+}
+
+let cartdata=document.getElementById("mainsection2")
+
+const getData2 = () => {
+    fetch("http://localhost:4500/cart/cartdata/",{
+        headers: {
+            Authorization: localStorage.getItem("token")
+        }
+    })
+        .then(res => res.json())
+        .then((res) => {
+            console.log(res);
+            const data = res;
+            console.log(data)
+            displaycartdata(data)
+        })
+        .catch(err => console.log(err));
+}
+getData2()
+function displaycartdata(data){
+    mainsection2.innerHTML = null;
+    let price=0
+    data.forEach((ele)=>{
+        price+=(ele.price*ele.quantity)
+    })
+    let cartprice=document.createElement("p")
+    cartprice.innerHTML=`Cart Total:Rs.${price}`;
+    let placeorder=document.createElement("button")
+    placeorder.innerText="Place Order"
+    placeorder.addEventListener("click",()=>{
+        mainsection.innerHTML=null;
+        mainsection2.innerHTML=null;
+        let cartempty=document.createElement("p")
+        cartempty.innerText="YOUR CART IS EMPTY"
+        window.location.assign("payment.html")
+    })
+    mainsection2.append(cartprice,placeorder)
+
 }

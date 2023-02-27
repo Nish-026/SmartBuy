@@ -75,7 +75,7 @@ const signup=()=>{
   }).then(res=>res.json())
   .then(res=>{
     if(res.msg=="success"){
-      window.location.assign("index.html")
+      window.location.assign("login.html")
     }else{
       strengthDiv.innerText="Your're already Registered, Please Log in"
       setTimeout(()=>{

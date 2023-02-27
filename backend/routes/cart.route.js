@@ -57,6 +57,18 @@ cartRouter.delete("/delete/:id",authenticate,async(req,res)=>{
         res.send({"msg":"something went wrong"})
     }
 })
+
+cartRouter.delete("/deletes/:id",authenticate,async(req,res)=>{
+    const ID=req.params.id
+    try{
+            await cartModel.findByIdAndDelete({"_id":ID})
+            res.send({"msg":"cart product deleted"})
+
+    }catch(err){
+        console.log(err);
+        res.send({"msg":"something went wrong"})
+    }
+})
 cartRouter.patch("/update/:id",authenticate,async(req,res)=>{
     const payload=req.body
     const productID=req.params.id
@@ -78,7 +90,6 @@ cartRouter.patch("/update/:id",authenticate,async(req,res)=>{
         res.send({"msg":"something went wrong"})
     }
 })
-
 
 module.exports={
     cartRouter
