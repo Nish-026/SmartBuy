@@ -1,120 +1,69 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  html,
-  body,
-  .wrapper {
-    height: 100%;
-  }
-  
-  @keyframes rotate {
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-  
-  body {
-    display: grid;
-    place-items: center;
-    margin: 0;
-    /* background-color: #000000; */
-    background-image: url("../images/6017056.jpg");
-    background-repeat: no-repeat;
-    font-family: "Euclid Circular A";
-    color: #03220e;
-    animation: rotate 5s infinite alternate linear;
-  }
-  
-  button {
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-  }
-  
-  .control {
-    border: 0;
-    border-radius: 8px;
-    outline: none;
-    width: 100%;
-    height: 56px;
-    padding: 0 16px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    color: #213d00;
-    margin: 8px 0;
-    font-family: inherit;
-    text-align: left;
-    font-size: 16px;
-    transition: 0.4s;
-  }
-  
-  .login-card {
-    width: 400px;
-    padding: 100px 30px 32px;
-    border-radius: 1.25rem;
-    background: rgba(103, 133, 13, 0.7);
-    opacity: 0.8;
-    backdrop-filter: blur(26px);
-    text-align: center;
-  }
-  
-  .login-card > h2 {
-    font-size: 36px;
-    font-weight: 600;
-    margin: 0 0 6px;
-    color: #213d00;;
-  }
-  
-  .login-card img {
-    width: 120px;
-    border-radius: 50%;
-    border: 1px solid rgba(9, 41, 1, 0.4);
-    padding: 5px;
-    margin-bottom: 20px;
-  }
-  
-  .login-card > h3 {
-    color: #021b07;
-    margin: 0 0 40px;
-    font-weight: 500;
-    font-size: 2rem;
-  }
-  
-  .login-form {
-    width: 100%;
-    margin: 0;
-    display: grid;
-  }
-  
-  .login-form input.control::placeholder {
-    color: #213d00;
-  }
-  
-  .login-form > button.control {
-    cursor: pointer;
-    width: 100%;
-    height: 56px;
-    padding: 0 16px;
-    background: #f9f9f9;
-    color: #1a3002;
-    border: 0;
-    font-family: inherit;
-    font-size: 1rem;
-    font-weight: 600;
-    text-align: center;
-    letter-spacing: 2px;
-    transition: all 0.375s;
-  }
-  
-  .username {
-    position: relative;
-  }
-  
-  #create{
-    text-decoration: none;
-    color:white;
-    margin-top: -10px;
-  }
+  margin: 0;
+  padding: 0;
+}
+.gapdiv {
+  height: 10px;
+  background-color: rgb(248, 193, 84);
+}
+#logodiv {
+  text-align: center;
+  margin-top: 30px;
+}
+#logodiv > img {
+  width: 100px;
+}
+#container {
+  display: grid;
+  place-content: center;
+  min-height: max-content;
+  height: 90vh;
+}
+form {
+  padding: 50px 30px;
+  font-size: 20px;
+  width: 350px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 10px;
+}
+form input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 30px;
+  font-size: 14px;
+  margin: 8px 0px;
+  padding: 0px 10px;
+  outline: none;
+}
+
+form p {
+  margin: 20px 0px;
+}
+form a {
+  color: rgb(255, 184, 52);
+  text-decoration: none;
+  font-size: 20px;
+}
+
+form a:hover {
+  text-decoration: underline;
+  color: rgb(249, 157, 123);
+}
+
+h2 {
+  margin: 10px;
+}
+
+form input[type="submit"] {
+  color: white;
+  background-color: rgb(255, 184, 52);
+  outline: none;
+  border: 0px;
+  border-radius: 5px;
+}
+form input[type="submit"]:hover {
+  background-color: rgb(253, 169, 13);
+  cursor: pointer;
+}
   
   

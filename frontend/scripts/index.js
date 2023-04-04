@@ -4,7 +4,6 @@ var swiper = new Swiper(".mySwiper", {
     spaceBetween: 10,
     freeMode: true,
 });
-
 var swiper2 = new Swiper(".mySwiperr", {
     cssMode: true,
     navigation: {
@@ -108,4 +107,14 @@ const get1=(e)=>{
 
 }
 
+const pleaselogin=()=>{
+    console.log("hi")
+    let User= localStorage.getItem("user")
+if(User){
+    window.location.href=order.html
+}else{
+    Swal.fire('Please Login first')
+}
+
+}
 

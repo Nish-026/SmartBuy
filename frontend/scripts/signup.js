@@ -1,88 +1,28 @@
-const bars = document.querySelector("#bars"),
-  strengthDiv = document.querySelector("#strength"),
-  passwordInput = document.querySelector("#password");
+let form = document.querySelector("form");
 
-const strength = {
-  1: "weak",
-  2: "medium",
-  3: "strong",
-};
-
-const getIndicator = (password, strengthValue) => {
-  for (let index = 0; index < password.length; index++) {
-    let char = password.charCodeAt(index);
-    if (!strengthValue.upper && char >= 65 && char <= 90) {
-      strengthValue.upper = true;
-    } else if (!strengthValue.numbers && char >= 48 && char <= 57) {
-      strengthValue.numbers = true;
-    } else if (!strengthValue.lower && char >= 97 && char <= 122) {
-      strengthValue.lower = true;
-    }
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  let all_tag = document.querySelectorAll("form input");
+  let signupObj = {};
+  for (let i = 0; i < all_tag.length - 1; i++) {
+    signupObj[all_tag[i].id] = all_tag[i].value;
   }
+  signupFun(signupObj);
+});
 
-  let strengthIndicator = 0;
-
-  for (let metric in strengthValue) {
-    if (strengthValue[metric] === true) {
-      strengthIndicator++;
+async function signupFun(signupObj) {
+  let data = await fetch(
+    "https://thankful-mittens-duck.cyclic.app/users/register",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(signupObj),
     }
-  }
-
-  return strength[strengthIndicator] ?? "";
-};
-
-const getStrength = (password) => {
-  let strengthValue = {
-    upper: false,
-    numbers: false,
-    lower: false,
-  };
-
-  return getIndicator(password, strengthValue);
-};
-
-const handleChange = () => {
-  let { value: password } = passwordInput;
-
-  console.log(password);
-
-  const strengthText = getStrength(password);
-
-  bars.classList = "";
-
-  if (strengthText) {
-    strengthDiv.innerText = `${strengthText} Password`;
-    bars.classList.add(strengthText);
+  );
+  if (data.status == 200) {
+    alert("User Registered");
   } else {
-    strengthDiv.innerText = "";
+    alert(await data.text());
   }
-};
-
-
-const signup=()=>{
-  const payload={
-      name:document.getElementById("name").value,
-      email:document.getElementById("email").value,
-      password:document.getElementById("password").value,
-      mobile:document.getElementById("mobile").value
-  }
-  fetch("http://localhost:4500/users/register",{
-      method:"POST",
-      headers:{
-          "Content-type":"application/json"
-      },
-      body: JSON.stringify(payload)
-  }).then(res=>res.json())
-  .then(res=>{
-    if(res.msg=="success"){
-      window.location.assign("login.html")
-    }else{
-      strengthDiv.innerText="Your're already Registered, Please Log in"
-      setTimeout(()=>{
-        window.location.assign("login.html")
-      },"2000")
-    }
-  })
-  .catch(err=>console.log(err))
 }
 
