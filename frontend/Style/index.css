@@ -26,6 +26,7 @@
 		#navbar{
 		    display: flex;
 		    justify-content: space-between;
+			align-items: center;
 		    width: 100%;
 			margin:auto;
 			box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -37,25 +38,50 @@
 		}
 
 		nav>div {
-		    width: 35%;
-		}
-		nav>div:nth-child(3){
-			width:40%;
-			margin-right: 20px;
+		    width: 30%;
 		}
 		#h_div_img{
-			margin:20px 0px -5px 20px;
+			margin:0px 0px -5px 20px;
 		}
+		.search-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		  }
+		  
+		  .search-box {
+			display: flex;
+			width: 300px;
+		  }
+		  
+		  input[type="text"] {
+			text-align: center;
+			padding: 5px;
+			width: 100%;
+			border: 1 px solid rgb(200, 152, 7);
+		  }
+		  
+		  button[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			padding: 7px;
+			border-radius: 0 3px 3px 0;
+		  }
+		  
 
 		#btns_div {
 		    display: flex;
 		    justify-content: space-between;
-			width:350px;
+			/* width:350px; */
 		}
 
 		#btns_div>div {
 		    /* width: 140px; */
 		    margin: auto;
+		}
+		#btns_div a{
+			color: rgb(70, 70, 70);
 		}
 
 		#btns_div>div>span {
@@ -70,12 +96,13 @@
 		  .dropbtn {
 			background-color: #ffffff;
 			color: rgb(12, 12, 12);
-			border: 1.5px solid rgb(200, 152, 7);
+			border: 0.5px solid rgb(200, 152, 7);
+			border-radius: 2px;
 			padding: 5px;
 			width:100%;
 			font-size: 16px;
 			cursor: pointer;
-			margin-top: 35px;
+			margin-bottom: 0px;
 			vertical-align: middle;
 		  }
 		  
@@ -309,3 +336,63 @@
 		  #footer>div:nth-child(2)>i{
 			margin-left: 10px;
 		  }
+
+		  .loader {
+			display: flex;
+			justify-content: center;
+			margin-left:45%;
+		  }
+		  
+		  .bar {
+			width: 7px;
+			height: 18px;
+			margin: 0 9px;
+			border-radius: 10px;
+			animation: loading_5192 1s ease-in-out infinite;
+			background-color: rgb(228, 147, 7);
+		  }
+		  
+		  .bar:nth-child(1) {
+			animation-delay: 0.01s;
+		  }
+		  
+		  .bar:nth-child(2) {
+			animation-delay: 0.09s;
+		  }
+		  
+		  .bar:nth-child(3) {
+			animation-delay: 0.19s;
+		  }
+		  
+		  .bar:nth-child(4) {
+			animation-delay: 0.29s;
+		  }
+		  
+		  @keyframes loading_5192 {
+			0% {
+			  transform: scale(1);
+			}
+		  
+			20% {
+			  transform: scale(1, 2.5);
+			}
+		  
+			40% {
+			  transform: scale(1);
+			}
+		  }
+		  
+
+   #loader_wrapper{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top:0;
+	left:0;
+	display: flex;
+	justify-self: center;
+	align-items: center;
+	background-color: #ffffff;
+	z-index: 999999;
+   }
+   

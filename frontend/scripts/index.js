@@ -108,7 +108,6 @@ const get1=(e)=>{
 }
 
 const pleaselogin=()=>{
-    console.log("hi")
     let User= localStorage.getItem("user")
 if(User){
     window.location.href=order.html
@@ -118,3 +117,29 @@ if(User){
 
 }
 
+const pleaselogin_cart=()=>{
+    let User= localStorage.getItem("user")
+if(User){
+    window.location.href=cart.html
+}else{
+    Swal.fire('Please Login first')
+}
+
+}
+
+const Login_btn= document.getElementById("login_btn");
+let User= localStorage.getItem("user")
+if(User){
+    Login_btn.innerHTML=null;
+    let user_heading= document.createElement("h4");
+    console.log(user_heading);
+    user_heading.innerText=User+"😍";
+    user_heading.style.fontSize="18px";
+    user_heading.style.color="#464646";
+    user_heading.style.fontWeight="normal";
+    Login_btn.append(user_heading)
+}
+
+$(window).on("load",function(){
+    $("#loader_wrapper").fadeOut(3000)
+})

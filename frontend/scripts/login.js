@@ -12,19 +12,24 @@ form.addEventListener("submit", (event) => {
 
 async function signinFun(signinObj) {
   let data = await fetch(
-    "https://thankful-mittens-duck.cyclic.app/users/signin",
+    "http://localhost:4500/users/login",
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(signinObj),
     }
-  );
+  )
+
+  console.log(data);
+
   if (data.status == 200) {
+    console.log(data);
     let token = await data.json();
     localStorage.setItem("token", token.token);
-    localStorage.setItem("user", token.user);
+    localStorage.setItem("user", token.username);
     history.back();
   } else {
-    alert(await data.text());
+    console.log("wrong");
+    Swal.fire('Wrong Credentials ❌')
   }
 }

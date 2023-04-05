@@ -7,12 +7,13 @@ form.addEventListener("submit", (event) => {
   for (let i = 0; i < all_tag.length - 1; i++) {
     signupObj[all_tag[i].id] = all_tag[i].value;
   }
+  console.log(signupObj);
   signupFun(signupObj);
 });
 
 async function signupFun(signupObj) {
   let data = await fetch(
-    "https://thankful-mittens-duck.cyclic.app/users/register",
+    "http://localhost:4500/users/register",
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -21,6 +22,7 @@ async function signupFun(signupObj) {
   );
   if (data.status == 200) {
     alert("User Registered");
+    window.location.href= "index.html"
   } else {
     alert(await data.text());
   }
