@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt")
 const userRouter = express.Router();
 const { userModel } = require("../model/user.model")
 const jwt = require("jsonwebtoken")
+
 userRouter.post("/register", async (req, res) => {
     const { name, email, password,mobile } = req.body
     const user=await userModel.find({email})
@@ -30,13 +31,17 @@ userRouter.post("/login", async (req, res) => {
     const { email, password } = (req.body)
     try {
         const user = await userModel.find({email})
+        console.log(user);
         if(user.length > 0) {
             bcrypt.compare(password, user[0].password, (err, result)=> {
+                console.log(result);
                 if(result){
-                    let token = jwt.sign({userID:user[0]._id}, 'shhhhh');
-                    res.send({ "msg": "Logging in", "token": token })
+                    let token = jwt.sign({userID:user[0]._id,username:user[0].name}, 'shhhhh');
+                    res.send({ "msg": "Logging in", "token": token,"username":user[0].name})
                 }else{
+                    res.status(401)
                     res.send({ "msg": "Wrong credentials" })
+
                 }
             });
         } else {
