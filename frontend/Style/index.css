@@ -72,13 +72,16 @@
 
 		#btns_div {
 		    display: flex;
-		    justify-content: space-between;
+		    justify-content: space-evenly;
 			/* width:350px; */
 		}
 
 		#btns_div>div {
 		    /* width: 140px; */
 		    margin: auto;
+		}
+		#btns_div>div:nth-child(3){
+			margin-left: -10%;
 		}
 		#btns_div a{
 			color: rgb(70, 70, 70);
@@ -152,6 +155,33 @@
 		  .fa-list{
 			margin-left:10px;
 		  }
+		  #dropdown-menu {
+			display: none;
+			position: absolute;
+			top: 30px;
+			right: 0;
+			background-color: #fff;
+			padding: 10px;
+			border: 1px solid #ccc;
+			z-index: 1;
+		  }
+		  
+		  #dropdown-menu a {
+			display:none;
+		  }
+		  #menu-btn{
+			display:none;
+			background-color: white;
+			border:none;
+			text-align: center;
+			padding-left:0px;
+			margin-bottom: 2%;
+		  }
+		  #menu-btn:hover + #dropdown-menu,
+		  #dropdown-menu:hover {
+			display: block;
+		  }
+		  
 		/*end of navigation bar  */
 
 

@@ -128,16 +128,20 @@ if(User){
 }
 
 const Login_btn= document.getElementById("login_btn");
+const logout_btn=document.getElementById("menu-btn");
+const drop_logout=document.getElementById("logout-btn");
 let User= localStorage.getItem("user")
 if(User){
     Login_btn.innerHTML=null;
     let user_heading= document.createElement("h4");
     console.log(user_heading);
     user_heading.innerText=User+"😍";
-    user_heading.style.fontSize="18px";
+    user_heading.style.fontSize="16px";
     user_heading.style.color="#464646";
     user_heading.style.fontWeight="normal";
-    Login_btn.append(user_heading)
+    logout_btn.style.display="block";
+    drop_logout.style.display="block";
+    logout_btn.append(user_heading);
 }
 
 $(window).on("load",function(){
