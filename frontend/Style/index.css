@@ -80,8 +80,9 @@
 		    /* width: 140px; */
 		    margin: auto;
 		}
-		#btns_div>div:nth-child(3){
-			margin-left: -10%;
+		#logout_div h4{
+			margin-bottom: 30%;
+			margin-left: -100%;
 		}
 		#btns_div a{
 			color: rgb(70, 70, 70);
@@ -158,8 +159,8 @@
 		  #dropdown-menu {
 			display: none;
 			position: absolute;
-			top: 30px;
-			right: 0;
+			top: 60px;
+			right:50px;
 			background-color: #fff;
 			padding: 10px;
 			border: 1px solid #ccc;
@@ -366,7 +367,7 @@
 		  #footer>div:nth-child(2)>i{
 			margin-left: 10px;
 		  }
-
+          /* end of footer */
 		  .loader {
 			display: flex;
 			justify-content: center;

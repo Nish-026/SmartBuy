@@ -147,3 +147,10 @@ if(User){
 $(window).on("load",function(){
     $("#loader_wrapper").fadeOut(3000)
 })
+
+let Logout_btn=document.getElementById("logout-btn")
+Logout_btn.addEventListener("click",()=>{
+    window.localStorage.removeItem('user');
+    window.localStorage.removeItem('token');
+    window.location.href="index.html"
+})

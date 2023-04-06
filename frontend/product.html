@@ -5,12 +5,68 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
+    <script src="https://kit.fontawesome.com/12a8246a20.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="./Style/product.css">
+    <link rel="stylesheet" href="./Style/nav_footer.css">
 </head>
 
 <body>
+    <nav id="navbar">
+        <div id="h_div_img">
+                <img src="./images/Screenshot 2023-02-21 103832.png">
+        </div>
+        <div class="dropdown">
+                <button class="dropbtn">Shop By Category</button>
+                <div class="dropdown-content">
+                        <div class="dropdown-submenu">
+                                <a href="product.html" onclick="get(this)" class="clicked"
+                                        data_id="category=Home Decor">Home decor</a>
+                                <div class="dropdown-submenu-content">
+                                        <a href="product.html" onclick="get1(this)"
+                                                data_id="product_category=clock">Clocks</a>
+                                        <a href="product.html" onclick="get1(this)"
+                                                data_id="product_category=Shelves">Wall Shelves</a>
+                                </div>
+                        </div>
+                        <div class="dropdown-submenu">
+                                <a href="product.html" onclick="get1(this)"
+                                        data_id="category=Women's Fashion">Women's Fashion</a>
+                                <div class="dropdown-submenu-content">
+                                        <a href="product.html" onclick="get1(this)"
+                                                data_id="product_category=Tops">Tops</a>
+                                </div>
+                        </div>
+                </div>
+        </div>
+        <div class="search-container">
+                <form action="/search">
+                        <div class="search-box">
+                                <input type="text" placeholder="Search...">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                </form>
+        </div>
+
+        <div id="btns_div">
+                <div><i class="fa-regular fa-rectangle-list"></i><span><a onclick="pleaselogin()">My
+                                        Orders</a></span></div>
+                <div><i class="fa-solid fa-cart-shopping"></i><span><a onclick="pleaselogin_cart()"
+                                        style="text-decoration: none">My Cart</a></span></div>
+                <div id="login_btn"><i class="fa-solid fa-user"></i><span><a href="login.html"
+                                        style="text-decoration: none">Log In/Sign Up</a></span></div>
+                <div id="logout_div"><button id="menu-btn"></button>
+                        <div id="dropdown-menu">
+                                <a style="text-decoration:none;cursor:pointer; "id="logout-btn">Logout ?</a>
+                        </div>
+                </div>
+
+        </div>
+
+</nav>
     <div id="mainsection_div">
         <div id="filter_div">
             <h5>FILTERS</h5>
@@ -57,10 +113,59 @@
         </div>
 
     </div>
+    
+    <div id="last_row">
+        <div>
+                <i class="fa-regular fa-heart"></i>
+                <h3>24X7 Help</h3>
+                <p>Need Help? Click Here. You can also talk to us on 0120 4606060 to resolve your query.
+                </p>
+        </div>
+        <div>
+                <i class="fa-solid fa-scale-balanced"></i>
+                <h3>SmartBuy Trust</h3>
+                <p>Your money is yours! All refunds come with no question asked guarantee.</p>
+        </div>
+        <div>
+                <i class="fa-regular fa-star"></i>
+                <h3>100% Assurance</h3>
+                <p>At Paytm, we provide 100% assurance. If you have any issue, your money is immediately
+                        refunded. Sit back
+                        and enjoy your shopping.</p>
+
+        </div>
+        <div>
+                <i class="fa-solid fa-check"></i>
+                <h3>Paytm Mall Promise</h3>
+                <p>Products with this tag are quality checked, and shipped the same day from certified
+                        warehouses. So you
+                        get the right product, faster.</p>
+
+        </div>
+</div>
+    <div id="footer">
+        <div>
+                <div>About Us</div>
+                <div>Partner with us</div>
+                <div>Terms & Conditions</div>
+                <div>Grievance policy</div>
+                <div>Return policy</div>
+        </div>
+        <div>
+                <i class="fa-brands fa-apple"></i>
+                <i class="fa-brands fa-windows"></i>
+                <i class="fa-brands fa-android"></i>
+                |
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-youtube"></i>
+        </div>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
 </body>
 
 </html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="./scripts/product.js"></script>

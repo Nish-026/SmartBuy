@@ -92,3 +92,63 @@ for (let j = 0; j < filter.length; j++) {
             .catch(err => console.log(err));
     })
 }
+
+
+let Logout_btn=document.getElementById("logout-btn")
+Logout_btn.addEventListener("click",()=>{
+    window.localStorage.removeItem('user');
+    window.localStorage.removeItem('token');
+    window.location.href="index.html"
+})
+
+const Login_btn= document.getElementById("login_btn");
+const logout_btn=document.getElementById("menu-btn");
+const drop_logout=document.getElementById("logout-btn");
+let User= localStorage.getItem("user")
+if(User){
+    Login_btn.innerHTML=null;
+    let user_heading= document.createElement("h4");
+    console.log(user_heading);
+    user_heading.innerText=User+"😍";
+    user_heading.style.fontSize="16px";
+    user_heading.style.color="#464646";
+    user_heading.style.fontWeight="normal";
+    logout_btn.style.display="block";
+    drop_logout.style.display="block";
+    logout_btn.append(user_heading);
+}
+
+const pleaselogin=()=>{
+    let User= localStorage.getItem("user")
+if(User){
+    window.location.href=order.html
+}else{
+    Swal.fire('Please Login first')
+}
+
+}
+
+const pleaselogin_cart=()=>{
+    let User= localStorage.getItem("user")
+if(User){
+    window.location.href=cart.html
+}else{
+    Swal.fire('Please Login first')
+}
+
+}
+
+const get=(e)=>{
+
+    const query_value=e.getAttribute("data_id")
+    console.log(query_value);
+    localStorage.setItem("clicked",query_value)
+}
+
+const get1=(e)=>{
+
+    const query_value=e.getAttribute("data_id")
+    console.log(query_value);
+    localStorage.setItem("clicked",query_value)
+
+}
