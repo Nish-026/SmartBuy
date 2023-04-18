@@ -16,7 +16,7 @@ userRouter.post("/register", async (req, res) => {
                 else {
                     const user = new userModel({ name, email, password: hash,mobile})
                     await user.save();
-                    res.send({ "msg": "success" })
+                    res.send({ "message": "user registered successfully" })
                 }
             });
         } catch (err) {
@@ -26,6 +26,12 @@ userRouter.post("/register", async (req, res) => {
 
 
 })
+// {
+//     "name":"Avinash",
+//     "email":"Avinash@gmail.com",
+//     "password":"123",
+//     "mobile":"123"
+// }
 
 userRouter.post("/login", async (req, res) => {
     const { email, password } = (req.body)

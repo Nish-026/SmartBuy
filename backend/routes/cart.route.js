@@ -4,6 +4,7 @@ const {authenticate}=require("../middleware/authenticate.middleware")
 const cartRouter=express.Router()
 const {cartModel} = require("../model/cart.model")
 const {productModel}=require("../model/products.model")
+
 cartRouter.get("/",authenticate,async(req,res)=>{
     await connection
     console.log(req.body)
@@ -58,17 +59,18 @@ cartRouter.delete("/delete/:id",authenticate,async(req,res)=>{
     }
 })
 
-cartRouter.delete("/deletes/:id",authenticate,async(req,res)=>{
-    const ID=req.params.id
-    try{
-            await cartModel.findByIdAndDelete({"_id":ID})
-            res.send({"msg":"cart product deleted"})
+// cartRouter.delete("/deletes/:id",authenticate,async(req,res)=>{
+//     const ID=req.params.id
+//     try{
+//             await cartModel.findByIdAndDelete({"_id":ID})
+//             res.send({"msg":"cart product deleted"})
 
-    }catch(err){
-        console.log(err);
-        res.send({"msg":"something went wrong"})
-    }
-})
+//     }catch(err){
+//         console.log(err);
+//         res.send({"msg":"something went wrong"})
+//     }
+// })
+
 cartRouter.patch("/update/:id",authenticate,async(req,res)=>{
     const payload=req.body
     const productID=req.params.id

@@ -118,9 +118,10 @@ if(User){
 }
 
 const pleaselogin_cart=()=>{
+    console.log("hi")
     let User= localStorage.getItem("user")
 if(User){
-    window.location.href=cart.html
+    window.location.href="cart.html"
 }else{
     Swal.fire('Please Login first')
 }

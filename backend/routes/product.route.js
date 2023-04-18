@@ -31,9 +31,16 @@ productRouter.get("/",async(req,res)=>{
     }
     console.log(req.query)
     const products= await productModel.find(query).sort(sortby)
-    res.send(products)
+    let brands={}
+    for(let i=0;i<products.length;i++){
+        if(brands[products[i].brand]==undefined){
+            brands[products[i].brand]=1;
+        }
+    }
+    res.status(200).send({products,brands})
 
 })
+
 
 productRouter.post("/create",async(req,res)=>{
     const payload= req.body

@@ -1,14 +1,4 @@
 		/* Style the navigation bar */
-        #header_div {
-		    width: 100%;
-		    margin: auto;
-		
-		}
-		#main_h_div{
-			box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-			display:flex;
-			align-items: centre;
-		}
 
 		#h_div_img {
 		    width: 100px;
@@ -36,7 +26,7 @@
 		    width: 30%;
 		}
 		#h_div_img{
-			margin:0px 0px -5px 20px;
+			margin:0px 0px 0px 20px;
 		}
 		.search-container {
 			display: flex;
