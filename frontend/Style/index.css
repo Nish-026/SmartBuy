@@ -72,13 +72,17 @@
 
 		#btns_div {
 		    display: flex;
-		    justify-content: space-between;
+		    justify-content: space-evenly;
 			/* width:350px; */
 		}
 
 		#btns_div>div {
 		    /* width: 140px; */
 		    margin: auto;
+		}
+		#logout_div h4{
+			margin-bottom: 30%;
+			margin-left: -100%;
 		}
 		#btns_div a{
 			color: rgb(70, 70, 70);
@@ -152,6 +156,33 @@
 		  .fa-list{
 			margin-left:10px;
 		  }
+		  #dropdown-menu {
+			display: none;
+			position: absolute;
+			top: 60px;
+			right:50px;
+			background-color: #fff;
+			padding: 10px;
+			border: 1px solid #ccc;
+			z-index: 1;
+		  }
+		  
+		  #dropdown-menu a {
+			display:none;
+		  }
+		  #menu-btn{
+			display:none;
+			background-color: white;
+			border:none;
+			text-align: center;
+			padding-left:0px;
+			margin-bottom: 2%;
+		  }
+		  #menu-btn:hover + #dropdown-menu,
+		  #dropdown-menu:hover {
+			display: block;
+		  }
+		  
 		/*end of navigation bar  */
 
 
@@ -336,7 +367,7 @@
 		  #footer>div:nth-child(2)>i{
 			margin-left: 10px;
 		  }
-
+          /* end of footer */
 		  .loader {
 			display: flex;
 			justify-content: center;
