@@ -1,16 +1,15 @@
 let mainSection = document.getElementById("main")
 const query = localStorage.getItem("clicked");
 let sortvalue;
+let brand_value;
 window.onload = (e) => {
     e.preventDefault;
-    console.log("hi")
-    console.log(query);
     fetch(`http://localhost:4500/product?${query}`)
         .then(res => res.json())
         .then((res) => {
-            console.log(res);
+            // console.log(res);
             const data = res;
-            console.log(data.brands);
+            // console.log(data.brands);
             display_brands(data.brands);
             display(data.products);
         })
@@ -19,7 +18,7 @@ window.onload = (e) => {
 };
 
 
-let mainf_div = document.getElementById("brand_filter")
+let brand_div = document.getElementById("brand_filter")
 let filterdiv = document.createElement("div");
 function display(data) {
     mainSection.innerHTML = null;
@@ -28,17 +27,18 @@ function display(data) {
         const image = document.createElement("img");
         image.setAttribute("src", ele.image1)
         const title = document.createElement("h6");
-        title.innerHTML = ele.name
+        title.innerHTML = ele.name.substring(0,20)+".."
         const price = document.createElement("p");
         price.innerHTML = `<span>&#8377;</span>${ele.price}`
         const addtoCart = document.createElement("button");
-        addtoCart.innerHTML = "Add to Cart 🛒";
+        addtoCart.setAttribute("class", "addtoCart")
+        addtoCart.innerHTML = "Add to Cart🛒";
         addtoCart.addEventListener("click", () => {
             console.log(ele["_id"])
             console.log(ele["price"])
             const data = {
                 quantity: 1,
-                product_Id: ele["_id"],
+                product_id: ele["_id"],
                 price: ele["price"]
             };
             fetch('http://localhost:4500/cart/add', {
@@ -65,56 +65,81 @@ function display(data) {
 }
 
 function display_brands(data) {
-    // data={}; { Fig: 1, 'H&M': 1, Levis: 1 }
     let brand_div= document.getElementById("brand_filter")
 
     for(let key in data){
         const card = document.createElement("div");
 
-        card.innerHTML = `  <div class="form-check" data_id="min=0&max=100">
-                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="1">
+        card.innerHTML = `<div class="form-check-brand" data_id=${key}>
+                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value=${key}>
                          <label class="form-check-label" for="flexRadioDefault1">
                            ${key}
                          </label>
                       </div>`
                       brand_div.append(card);
     }
-
-
-
-}
-
-const sort = document.getElementById("form-select")
-console.log(sort)
-
-sort.addEventListener("change", () => {
-    sortvalue = sort.value
-    fetch(`http://localhost:4500/product?${query}&${sortvalue}&${filtervalue}`)
-        .then(res => res.json())
-        .then((res) => {
-            console.log(res);
-            const data = res;
-            display(data)
-        })
-        .catch(err => console.log(err));
-})
-let filtervalue;
-const filter = document.getElementsByClassName("form-check");
-for (let j = 0; j < filter.length; j++) {
-    filter[j].addEventListener("click", () => {
-        filtervalue = filter[j].getAttribute("data_id");
-        fetch(`http://localhost:4500/product?${query}&${sortvalue}&${filtervalue}`)
+    // ----------------------------------------------- Filtering by brands  ---------------------------------------------------------//
+const brands = document.getElementsByClassName("form-check-brand");
+for (let j = 0; j < brands.length; j++) {
+    brands[j].addEventListener("click", () => {
+        console.log(brands[j])
+        brand_value = brands[j].getAttribute("data_id");
+        console.log(brand_value);
+        fetch(`http://localhost:4500/product?${query}&${sortvalue}&${filtervalue}&brand=${brand_value}`)
             .then(res => res.json())
             .then((res) => {
                 console.log(res);
                 const data = res;
-                display(data)
+                display(data.products)
             })
             .catch(err => console.log(err));
     })
 }
 
 
+
+}
+
+//---------------------------------------- For Sorting -----------------------------------------------// 
+
+const sort = document.getElementById("form-select")
+sort.addEventListener("change", () => {
+    sortvalue = sort.value
+    console.log(sort.value)
+    fetch(`http://localhost:4500/product?${query}&${sortvalue}&${filtervalue}&${brand_value}`)
+        .then(res => res.json())
+        .then((res) => {
+            console.log(res);
+            const data = res;
+            display(data.products)
+        })
+        .catch(err => console.log(err));
+})
+
+//-------------------------------- Filtering by price ----------------------------------------------//
+let filtervalue;
+const filter = document.getElementsByClassName("form-check");
+for (let j = 0; j < filter.length; j++) {
+    filter[j].addEventListener("click", () => {
+        filtervalue = filter[j].getAttribute("data_id");
+        fetch(`http://localhost:4500/product?${query}&${sortvalue}&${filtervalue}&${brand_value}`)
+            .then(res => res.json())
+            .then((res) => {
+                console.log(res);
+                const data = res;
+                display(data.products)
+            })
+            .catch(err => console.log(err));
+    })
+}
+
+
+
+
+
+
+
+// --------------------------------------------------- Logout ------------------------------------------------------------------//
 let Logout_btn = document.getElementById("logout-btn")
 Logout_btn.addEventListener("click", () => {
     window.localStorage.removeItem('user');
