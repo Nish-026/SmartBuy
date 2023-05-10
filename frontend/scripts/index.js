@@ -1,8 +1,12 @@
 
 var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 8.1,
+    loop: true,
+    slidesPerView: 6.1,
     spaceBetween: 10,
     freeMode: true,
+    autoplay:{
+        delay:1000,
+    },
 });
 var swiper2 = new Swiper(".mySwiperr", {
     cssMode: true,
@@ -10,8 +14,15 @@ var swiper2 = new Swiper(".mySwiperr", {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
     },
+    loop: true,
+    autoplay:{
+        delay:1000,
+    },
     pagination: {
         el: ".swiper-pagination",
+    },
+    scrollbar: {
+        el: '.swiper-scrollbar',
     },
     mousewheel: true,
     keyboard: true,
