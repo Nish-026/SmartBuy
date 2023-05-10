@@ -4,13 +4,15 @@ const productRouter=express.Router()
 const {productModel} = require("../model/products.model")
 
 productRouter.get("/",async(req,res)=>{
-    console.log(req.query)
     let query={}
     if(req.query.product_category){
         query["product_category"]=req.query.product_category;
     }
     if(req.query.category){
         query["category"]=req.query.category
+    }
+    if(req.query.brand){
+        query["brand"]=req.query.brand
     }
     let sortby={}
     let min,max;
@@ -23,13 +25,13 @@ productRouter.get("/",async(req,res)=>{
             query["price"]={$gt:min}
         }
     }
-    console.log(query);
+
     if(req.query.asc){
         sortby[req.query.asc]=1;
     }else if(req.query.desc){
         sortby[req.query.desc]=-1;
     }
-    console.log(req.query)
+    // console.log(req.query)
     const products= await productModel.find(query).sort(sortby)
     let brands={}
     for(let i=0;i<products.length;i++){
