@@ -1,4 +1,8 @@
 
+let mainsection=document.getElementById("mainsection1");
+let cart_data= document.getElementById("mainsection2");
+let cart_details_div=document.getElementById("cart_details")
+let cart_items=0;
 let flag="no"
 const getData = () => {
     fetch("http://localhost:4500/cart/",{
@@ -8,21 +12,22 @@ const getData = () => {
     })
         .then(res => res.json())
         .then((res) => {
-            console.log(res);
             const data = res;
+            let products=res.products;
+            let cart= res.cart
+            cart_items=products.length;
             // console.log(data)
-            display(data)
+            display(products,cart)
+            displaycartdata(cart)
         })
         .catch(err => console.log(err));
 }
 getData()
 
 
-let mainsection=document.getElementById("mainsection1")
-
-function display(data) {
+function display(products,cart) {
     mainsection.innerHTML = null;
-    data.forEach((ele) => {
+    products.forEach((ele) => {
         const card = document.createElement("div");
         card.setAttribute("id", "card")
         const img_div=document.createElement("div");
@@ -36,17 +41,29 @@ function display(data) {
         let select_qty=document.createElement("div")
         select_qty.setAttribute("id", "select_qty_div")
         let plus=document.createElement("p");
+        plus.setAttribute("id", "plus")
         plus.innerHTML="+"
         let minus=document.createElement("p");
         minus.innerHTML="-";
+        minus.setAttribute("id", "minus")
+        let qty_div= document.createElement("div");
+        qty_div.setAttribute("id", "qty_div");
         let qty=document.createElement("p");
-        qty.innerHTML="1"
-        select_qty.append(plus,qty,minus)
+        let qty_value;
+        cart[0].items.forEach((element)=>{
+            if(element.product_id==ele._id){
+                qty_value=element.quantity
+            }
+        })
+        qty.innerHTML=qty_value
+        qty_div.append(qty)
+        select_qty.append(plus,qty_div,minus)
         const remove = document.createElement("button");
         remove.setAttribute("id", "remove_btn")
         remove.innerHTML = "Remove❌";
         remove.addEventListener("click",()=>{
             let Id=ele["_id"]
+            console.log(Id)
               fetch(`http://localhost:4500/cart/delete/${Id}`, {
                 method: 'DELETE',
                 headers: {
@@ -59,8 +76,6 @@ function display(data) {
               .then(res => {
                 console.log(res);
                 getData();
-                getData2();
-                getcouponData()
               })
               .catch(error => {
                 console.error(error);
@@ -72,71 +87,69 @@ function display(data) {
         card.append(img_div,data_div)
         mainsection.append(card);
         plus.addEventListener("click",(e)=>{
-            console.log("hi")
             let Id=ele["_id"]
             console.log(ele.quantity)
             const payload={
                 quantity:ele.quantity
             }
-            fetch(`http://localhost:4500/cart/update/${Id}`,{
-                method:"PATCH",
+            fetch(`http://localhost:4500/cart/increment/${Id}`,{
+                method:"PUT",
                 headers:{
                     "Content-type":"application/json",
                     "Authorization":localStorage.getItem("token")
                 },
-                body: JSON.stringify(payload)
             }).then(res=>res.json())
             .then(res=>{
-                console.log(res)
-                getData2();
-                getcouponData()
+                getData();
+            })
+            .catch(err=>console.log(err))
+        })
+
+        minus.addEventListener("click",(e)=>{
+            let Id=ele["_id"]
+            console.log(ele.quantity)
+            const payload={
+                quantity:ele.quantity
+            }
+            fetch(`http://localhost:4500/cart/decrement/${Id}`,{
+                method:"PUT",
+                headers:{
+                    "Content-type":"application/json",
+                    "Authorization":localStorage.getItem("token")
+                },
+            }).then(res=>res.json())
+            .then(res=>{
+                getData();
             })
             .catch(err=>console.log(err))
         })
     })
 }
 
-let cartdata=document.getElementById("mainsection2")
-let cart_data;
-const getData2 = () => {
-    fetch("http://localhost:4500/cart/cartdata/",{
-        headers: {
-            Authorization: localStorage.getItem("token")
-        }
-    })
-        .then(res => res.json())
-        .then((res) => {
-            console.log(res);
-            cart_data = res;
-            // console.log(data)
-            displaycartdata(cart_data)
-        })
-        .catch(err => console.log(err));
-}
-getData2()
 
 
-let cartprice=document.createElement("p")
-let price=0
+
+
 function displaycartdata(data){
-    console.log("cart_data")
-    console.log(data);
-    price=0
-    cartdata.innerHTML = null;
-    data.forEach((ele)=>{
-        price+=(ele.price*ele.quantity)
-    })
-    cartprice.innerHTML=`Cart Total:Rs.${price}`;
+    cart_details_div.innerHTML=null;
+    let cartprice=document.createElement("p");
+    let items=document.createElement("p");
+    items.innerText=`Price Details:(${data[0].items.length})`;
+    let price=0
+    let con_fee=document.createElement("p");
+    cartprice.innerHTML=`Total MRP:                 ₹${data[0].total_price}`;
+    if(data[0].total_price>600){
+        con_fee.innerText="Convenience Fee: FREE"
+    }else{
+        con_fee.innerText= "Convenience Fee: ₹99"
+    }
     let placeorder=document.createElement("button")
     placeorder.innerText="Place Order"
+    placeorder.setAttribute("id","place_order")
     placeorder.addEventListener("click",()=>{
-        mainsection.innerHTML=null;
-        cartdata.innerHTML=null;
-        let cartempty=document.createElement("p")
-        cartempty.innerText="YOUR CART IS EMPTY ☹"
         window.location.assign("payment.html")
     })
-    cartdata.append(cartprice,placeorder)
+    cart_details_div.append(items,cartprice,con_fee,placeorder)
 
 }
 
@@ -205,48 +218,48 @@ Logout_btn.addEventListener("click",()=>{
 })
 
 
-const getcouponData = () => {
-    fetch("http://localhost:4500/orders/",{
-        headers: {
-            Authorization: localStorage.getItem("token")
-        }
-    })
-        .then(res => res.json())
-        .then((res) => {
-            // console.log(res);
-            const data = res;
-            // console.log(data)
-            display_coupon(data)
-        })
-        .catch(err => console.log(err));
-}
-getcouponData()
+// const getcouponData = () => {
+//     fetch("http://localhost:4500/orders/",{
+//         headers: {
+//             Authorization: localStorage.getItem("token")
+//         }
+//     })
+//         .then(res => res.json())
+//         .then((res) => {
+//             // console.log(res);
+//             const data = res;
+//             // console.log(data)
+//             display_coupon(data)
+//         })
+//         .catch(err => console.log(err));
+// }
+// getcouponData()
 
-function display_coupon(data){
-    console.log("hi")
-    if(data.length){
-        let coupon_div=document.createElement("div");
-        coupon_div.setAttribute("id", "coupon_Div");
-        let coupon= document.createElement("p");
-        coupon.innerHTML= "Loyalty Discount 🤗";
-        let coupon_btn= document.createElement("button");
-        coupon_btn.innerHTML= "Apply Coupon"
-        coupon_btn.addEventListener("click",()=>{
-            if(flag=="no"){
-                price=price-(price*0.1)
-                cartprice.innerHTML=`Cart Total:Rs.${price}`;
-                flag="yes"
-            }else{
-                Swal.fire("Already Applied !")
-            }
+// function display_coupon(data){
+//     console.log("hi")
+//     if(data.length){
+//         let coupon_div=document.createElement("div");
+//         coupon_div.setAttribute("id", "coupon_Div");
+//         let coupon= document.createElement("p");
+//         coupon.innerHTML= "Loyalty Discount 🤗";
+//         let coupon_btn= document.createElement("button");
+//         coupon_btn.innerHTML= "Apply Coupon"
+//         coupon_btn.addEventListener("click",()=>{
+//             if(flag=="no"){
+//                 price=price-(price*0.1)
+//                 cartprice.innerHTML=`Cart Total:Rs.${price}`;
+//                 flag="yes"
+//             }else{
+//                 Swal.fire("Already Applied !")
+//             }
 
-        })
-        coupon_div.append(coupon,coupon_btn)
-        cartdata.append(coupon_div)
-    }else{
-        let coupon= document.createElement("p");
-        coupon.innerHTML= "Welcome Discount 🤑"
-        cartdata.append(coupon)
+//         })
+//         coupon_div.append(coupon,coupon_btn)
+//         cartdata.append(coupon_div)
+//     }else{
+//         let coupon= document.createElement("p");
+//         coupon.innerHTML= "Welcome Discount 🤑"
+//         cartdata.append(coupon)
 
-    }
-}
+//     }
+// }
