@@ -20,7 +20,7 @@ app.get("/",(req,res)=>{
 app.use("/cart",cartRouter)
 app.use("/users",userRouter)
 app.use("/product",productRouter)
-app.use("/orders",orderRouter)
+app.use("/order",orderRouter)
 app.listen(process.env.port,async()=>{
     try{
         await connection

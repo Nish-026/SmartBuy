@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./Style/nav_footer.css">
+    <link rel="stylesheet" href="./Style/orders.css">
+    <script src="https://kit.fontawesome.com/12a8246a20.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav id="navbar">
+        <div id="h_div_img">
+                <img src="./images/Screenshot 2023-02-21 103832.png">
+        </div>
+        <div class="dropdown">
+                <button class="dropbtn">Shop By Category</button>
+                <div class="dropdown-content">
+                        <div class="dropdown-submenu">
+                                <a href="product.html" onclick="get(this)" class="clicked"
+                                        data_id="category=Home Decor">Home decor</a>
+                                <div class="dropdown-submenu-content">
+                                        <a href="product.html" onclick="get1(this)"
+                                                data_id="product_category=clock">Clocks</a>
+                                        <a href="product.html" onclick="get1(this)"
+                                                data_id="product_category=Shelves">Wall Shelves</a>
+                                </div>
+                        </div>
+                        <div class="dropdown-submenu">
+                                <a href="product.html" onclick="get1(this)"
+                                        data_id="category=Women's Fashion">Women's Fashion</a>
+                                <div class="dropdown-submenu-content">
+                                        <a href="product.html" onclick="get1(this)"
+                                                data_id="product_category=Tops">Tops</a>
+                                </div>
+                        </div>
+                </div>
+        </div>
+        <div class="search-container">
+                <form action="/search">
+                        <div class="search-box">
+                                <input type="text" placeholder="Search...">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                </form>
+        </div>
+
+        <div id="btns_div">
+                <div><i class="fa-regular fa-rectangle-list"></i><span><a onclick="pleaselogin()">My
+                                        Orders</a></span></div>
+                <div><i class="fa-solid fa-cart-shopping"></i><span><a onclick="pleaselogin_cart()"
+                                        style="text-decoration: none">My Cart</a></span></div>
+                <div id="login_btn"><i class="fa-solid fa-user"></i><span><a href="login.html"
+                                        style="text-decoration: none">Log In/Sign Up</a></span></div>
+                <div id="logout_div"><button id="menu-btn"></button>
+                        <div id="dropdown-menu">
+                                <a style="text-decoration:none;cursor:pointer; "id="logout-btn">Logout ?</a>
+                        </div>
+                </div>
+
+        </div>
+
+</nav>
+    <div id="mainsection">
+        
+    </div>
+</div>
+<div id="footer">
+    <div>
+            <div>About Us</div>
+            <div>Partner with us</div>
+            <div>Terms & Conditions</div>
+            <div>Grievance policy</div>
+            <div>Return policy</div>
+    </div>
+    <div>
+            <i class="fa-brands fa-apple"></i>
+            <i class="fa-brands fa-windows"></i>
+            <i class="fa-brands fa-android"></i>
+            |
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-youtube"></i>
+    </div>
+</div>
+</body>
+</html>
+<script src="./scripts/orders.js"></script>
