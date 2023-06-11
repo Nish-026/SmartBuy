@@ -5,7 +5,7 @@
     width:70%;
     margin: auto;
     justify-content: space-between;
-    /* border: 1px solid red; */
+    /* border: 1px solid rgb(58, 58, 58); */
     margin-top: 50px;
 }
 #mainsection1{
@@ -174,4 +174,10 @@
     background-color: rgb(250, 209, 105);
     border:none;
     border-radius: 2px solid rgb(250, 209, 105);
+}
+#empty_headline{
+  margin: auto;
+  border: 1px solid rgb(15, 15, 15);
+  padding: 50px;
+  background-color: rgb(249, 224, 162);
 }

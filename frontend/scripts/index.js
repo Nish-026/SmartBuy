@@ -121,7 +121,7 @@ const get1=(e)=>{
 const pleaselogin=()=>{
     let User= localStorage.getItem("user")
 if(User){
-    window.location.href=order.html
+    window.location.href="orders.html"
 }else{
     Swal.fire('Please Login first')
 }
@@ -129,7 +129,6 @@ if(User){
 }
 
 const pleaselogin_cart=()=>{
-    console.log("hi")
     let User= localStorage.getItem("user")
 if(User){
     window.location.href="cart.html"
@@ -166,3 +165,4 @@ Logout_btn.addEventListener("click",()=>{
     window.localStorage.removeItem('token');
     window.location.href="index.html"
 })
+

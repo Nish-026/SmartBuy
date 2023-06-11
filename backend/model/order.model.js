@@ -6,7 +6,9 @@ const orderSchema=mongoose.Schema({
     Date: {type:String, default:new Date()},
     price: Number,
     products: [{
-      productID: String
+      product_id: String,
+      quantity:String,
+      price:Number
     }]
 })
 const orderModel=mongoose.model("orders",orderSchema)

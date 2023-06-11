@@ -53,11 +53,11 @@ productRouter.post("/create",async(req,res)=>{
 })
 
 productRouter.patch("/update/:id",async(req,res)=>{
-    const noteID=req.params.id
+    const productID=req.params.id
     const payload=req.body
     try{
 
-            await productModel.findByIdAndUpdate({"_id":noteID},payload)
+            await productModel.findByIdAndUpdate({"_id":productID},payload)
             res.send({"msg":`Note with id: ${noteID} has been updated`})
         
     }catch(err){

@@ -1,0 +1,49 @@
+#user{
+    margin-top: -2px;
+}
+#mainsection{
+    border: 1px solid rgb(99, 99, 99);
+    width:80%;
+    margin:auto;
+    margin-top: 20px;
+    padding-top: 40px;
+    border-radius: 5px;
+    padding:10px;
+    padding-bottom: 250px;
+    background-color: #fff5ca;
+}
+table {
+    /* border-collapse: collapse; */
+    width: 100%;
+    text-align: center;
+  }
+  
+  th, td {
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #fed784;
+    border-radius: 15px;
+  }
+  td {
+    background-color: rgb(254, 254, 254);
+    border-radius: 5px;
+    border: 1px solid rgb(104, 104, 104);
+  }
+  #view_td{
+    background-color: rgb(251, 253, 111);
+  }
+  .view_button{
+    padding: 8px;
+    cursor:pointer;
+    background-color: #21654d;
+    border:none;
+    border-radius: 4px;
+    color:white;
+  }
+  #Orders_heading{
+    margin-left:5px;
+    color: rgb(68, 65, 65);
+  }
+  

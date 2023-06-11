@@ -21,7 +21,7 @@ cartRouter.get("/", authenticate, async (req, res) => {
     }
     res.send({ products, cart });
   } else {
-    res.send({ msg: "empty" })
+    res.send({ message: "empty" })
   }
 
 })

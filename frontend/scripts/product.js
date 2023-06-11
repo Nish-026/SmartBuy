@@ -34,8 +34,6 @@ function display(data) {
         addtoCart.setAttribute("class", "addtoCart")
         addtoCart.innerHTML = "Add to Cart🛒";
         addtoCart.addEventListener("click", () => {
-            console.log(ele["_id"])
-            console.log(ele["price"])
             const data = {
                 quantity: 1,
                 product_id: ele["_id"],
@@ -167,7 +165,7 @@ if (User) {
 const pleaselogin = () => {
     let User = localStorage.getItem("user")
     if (User) {
-        window.location.href = order.html
+        window.location.href = "orders.html"
     } else {
         Swal.fire('Please Login first')
     }

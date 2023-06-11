@@ -84,6 +84,7 @@ new Vue({
   }
 });
 
+let cart_id;
 
 let total= document.getElementById("total");
 let grandTotal =document.getElementById("grandTotal");
@@ -99,6 +100,8 @@ const getData = () => {
           let products=res.products;
           let cart= res.cart
           console.log(cart);
+          cart_id= cart[0]._id;
+          console.log(cart_id);
           total.innerText= cart[0].total_price;
           grandTotal.innerText= cart[0].total_price+13;
       })
@@ -457,8 +460,31 @@ payment_submit[0].addEventListener("click",()=>{
         confetti.resize();
     });
   });
-  setTimeout(()=>{
-    window.location.href="index.html"
-  },4000)
+
+  async function Remove_cart(){
+    await fetch(`http://localhost:4500/order/add/${cart_id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+           Authorization: localStorage.getItem("token")
+    
+        }
+      })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    
+      setTimeout(()=>{
+        window.location.href="index.html"
+      },4000)
+}
+Remove_cart()
+console.log("hi")
 })
+
+
 
